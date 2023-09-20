@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply bg-orange-100
+}
+
+#app{
+    @apply w-screen
+}
+.main{
+    @apply xl:flex xl:justify-center
+}
+.box{
+    @apply max-w-7xl w-screen
+}
+
+.header{
+    @apply flex justify-between rounded-md h-24 items-center sticky top-0 shadow-md z-50 bg-orange-100
+}
+
+.logo{
+    @apply h-full w-24
+}
+.cart{
+    @apply relative h-9 w-9 mr-6
+}
+
+.number{
+    @apply absolute h-5 min-w-[50%] px-1 rounded-full bg-orange-400 text-white flex justify-center items-center font-semibold -right-1 -top-1
+}
+
+.banner-img{
+    @apply w-screen h-[18rem] sm:h-[26rem] mt-1 rounded-md
+}
+
+.heading{
+    @apply text-center text-4xl font-semibold text-blue-950 mt-5
+}
+
+.sub-heading{
+    @apply text-blue-950 text-center text-sm
+}
+
+.card{
+    @apply grid w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9
+}
+
+.product{
+    @apply h-40 my-5 w-full rounded-md h-fit bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all px-2 pb-2 backdrop-blur-lg
+}
+
+.product-img{
+    @apply w-1/2 sm:w-5/6 h-80 rounded-t-md justify-center my-4 object-contain
+}
+
+.product-name{
+    @apply text-blue-950 font-semibold h-24 overflow-hidden
+}
+
+.price-detail{
+    @apply flex justify-between w-2/3 text-xl 
+}
+
+.discount{
+    @apply text-red-500
+}
+
+.price{
+    @apply font-semibold text-[#333]
+}
+
+span{
+    @apply text-sm text-gray-600
+}
+
+.mrp{
+    @apply line-through
+}
+
+.add-cart {
+  --color: #fb923c;
+  font-family: inherit;
+  display: inline-block;
+  width: 100%;
+  height: 2.6em;
+  line-height: 2.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #172554;
+  margin: 10px 0;
+}
+
+.add-cart:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 100%;
+  border-radius: 30%;
+}
+
+.add-cart:hover {
+  color: #fff;
+}
+
+.add-cart:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.add-cart:hover:before {
+  top: -50px;
+  left: 0px;
+}
+
+.add-cart:active:before {
+  background: #fb923c;
+  transition: background 0s;
+}
+
+
+/* Cart Page Styling */
+
+.cart-main{
+    @apply flex justify-center mx-4 items-center
+}
+
+.cart-box{
+    @apply max-w-5xl w-screen
+}
+
+.cart-flex{
+    @apply flex justify-center items-center flex-col
+}
+
+.flex-inner{
+    @apply bg-orange-200/25 px-2 hover:bg-orange-300/25 gap-4 hover:transition-all rounded-md w-full my-3 min-h-fit grid grid-flow-col max-[440px]:grid-flow-row py-2
+}
+
+.cart-img{
+    @apply h-fit px-3 grid grid-cols-1 max-[440px]:place-items-center
+}
+
+.cart-img img{
+    @apply w-48 h-60 object-contain
+}
+
+.cart-item-name{
+    @apply max-[520px]:text-xl text-xl text-blue-950 max-[450px]:text-lg
+}
+
+.cart-discount{
+    @apply text-white inline-block max-[520px]:my-1 my-2 py-1 px-2 bg-orange-400
+}
+
+.cart-price{
+    @apply inline-block max-[283px]:block text-xl font-semibold max-[520px]:my-0 max-[520px]:text-lg my-1 text-[#333]
+}
+
+.cart-stock{
+    @apply text-green-500 max-[520px]:my-0 my-1 inline-block
+}
+
+.inc-dec{
+    @apply flex gap-4 my-2 max-[520px]:mt-1 max-[520px]:mb-0
+}
+
+.inc-dec svg{
+    @apply bg-orange-400 rounded-full p-1 text-[#333]
+}
+
+.remove{
+    @apply text-red-500 underline pt-1 inline-block cursor-pointer
+}
+
+.cart-header{
+    @apply flex justify-between items-center w-full
+}
+
+.cart-heading{
+    @apply text-2xl sm:text-4xl font-semibold text-blue-950 my-5
+}
+
+.remove-items{
+    @apply text-red-500 underline font-semibold cursor-pointer
+}
+
+.underline{
+    @apply underline-offset-2
+}
+
+svg{
+    @apply cursor-pointer
+}
+
+.total-footer{
+    @apply my-5 max-[500px]:self-center max-[500px]:w-full w-1/2 min-h-fit flex self-end flex-col rounded-md bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all p-2
+}
+
+.sub-total{
+    @apply font-semibold sm:text-2xl text-blue-950
+}
+
+.sub-item{
+    @apply text-sm text-gray-600
+}
+
+.total{
+    @apply text-xl sm:text-3xl font-semibold text-[#333]
+}
+
+/* Not Found Page */
+
+.not-h1{
+    @apply text-5xl font-semibold my-5 text-blue-950
+}
+
+.not-h3{
+    @apply text-2xl mb-4
+}
+
+.home{
+    @apply text-orange-400 text-xl underline
+}
+
+.not-found{
+    @apply h-[95vh] flex justify-center items-center flex-col
+}
+
+.footer-text{
+    @apply flex flex-row justify-between items-center
+}
+
+/* Checkout Page Design */
+
+.checkout-main{
+    @apply mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8
+}
+
+.form-input{
+    @apply block w-full  rounded-md border-transparent shadow-sm focus:border-orange-400 focus:ring-orange-400 sm:text-sm
+}
+
+.form-label{
+    @apply block text-sm font-medium text-gray-700
+}
+
+.checkout-form{
+    @apply lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16
+}
+
+.form-heading{
+    @apply text-lg font-medium text-blue-950
+}
+
+.form-shipping{
+    @apply mt-10 border-t border-gray-200 pt-10
+}
+
+.red{
+    @apply text-red-500
+}
+
+.shipping-grid{
+    @apply mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4
+}
+
+.mt{
+    @apply mt-1
+}
+
+.order-main{
+    @apply mt-4 rounded-lg bg-white shadow-sm hover:shadow-none transition-all
+}
+
+.order-flex{
+    @apply ml-6 flex flex-1 flex-col
+}
+
+.order-summary{
+    @apply flex px-4 py-6 sm:px-6 hover:bg-orange-100 transition-all delay-75
+}
+
+.order-title{
+    @apply font-medium text-blue-950 hover:text-gray-800
+}
+
+.order-description{
+    @apply mt-1 text-sm text-gray-500
+}
+
+.order-total{
+    @apply space-y-6 border-t border-gray-200 px-4 py-6 sm:px-6
+}
+
+.order-total-flex{
+    @apply flex items-center justify-between
+}
+
+.order-number{
+    @apply text-sm font-medium text-gray-900
+}
+
+.order-btn{
+    @apply w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50
+}
+
+.order-quantity{
+    @apply text-base font-medium sm:text-sm text-[#333]
+}
