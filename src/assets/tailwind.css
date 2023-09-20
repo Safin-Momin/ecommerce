@@ -44,11 +44,11 @@ body{
 }
 
 .card{
-    @apply grid w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9
+    @apply grid w-full max-[640px]:mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9 mt-2
 }
 
 .product{
-    @apply h-40 my-5 w-full rounded-md h-fit bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all px-2 pb-2 backdrop-blur-lg
+    @apply h-40 my-5 w-4/5 max-[640px]:block max-[640px]:m-auto sm:w-full rounded-md h-fit bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all px-2 pb-2
 }
 
 .product-img{
@@ -87,7 +87,7 @@ span{
   height: 2.6em;
   line-height: 2.5em;
   position: relative;
-  overflow: hidden;
+  overflow:hidden;
   border: 2px solid var(--color);
   transition: color 0.5s;
   z-index: 1;
@@ -283,12 +283,24 @@ svg{
     @apply mt-4 rounded-lg bg-white shadow-sm hover:shadow-none transition-all
 }
 
+.order-edit{
+    @apply ml-4 flow-root flex-shrink-0 max-[430px]:ml-2
+}
+
+.order-edit-btn{
+    @apply -m-2.5 flex items-center justify-center p-2.5 max-[430px]:pt-3.5 max-[430px]:pl-0 text-gray-400 hover:text-gray-500
+}
+
+.order-save-qty{
+    @apply flex flex-1 items-end justify-between pt-2 max-[430px]:flex-col max-[430px]:items-start
+}
+
 .order-flex{
-    @apply ml-6 flex flex-1 flex-col
+    @apply ml-6 flex flex-1 flex-col max-[240px]:m-auto max-[240px]:block
 }
 
 .order-summary{
-    @apply flex px-4 py-6 sm:px-6 hover:bg-orange-100 transition-all delay-75
+    @apply flex max-[240px]:flex-col max-[240px]:justify-center px-4 py-6 sm:px-6 hover:bg-orange-100 transition-all delay-75
 }
 
 .order-title{
@@ -311,10 +323,28 @@ svg{
     @apply text-sm font-medium text-gray-900
 }
 
+.order-div{
+    @apply border-t border-gray-200 px-4 py-6 sm:px-6
+}
+
 .order-btn{
     @apply w-full rounded-md border border-transparent bg-orange-400 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50
 }
 
 .order-quantity{
-    @apply text-base font-medium sm:text-sm text-[#333]
+    @apply text-sm font-medium sm:text-sm text-[#333]
+}
+
+/* Modal Text */
+
+.modal-div{
+    @apply flex justify-center flex-col pb-4
+}
+
+.modal-text{
+    @apply text-green-500 flex justify-center animate-pulse
+}
+
+.modal-btn{
+    @apply text-orange-400 underline text-base font-medium
 }

@@ -1,11 +1,13 @@
 <script setup>
 import router from "../router";
-import { ref, computed } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useStore } from "../stores/store";
-import { required, email } from "@vuelidate/validators";
+import { required, email, minLength, numeric } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import ModalView from "./ModalView.vue";
 
 const store = useStore();
+const showModal = ref(false);
 
 const checkoutData = computed(() => {
   const checkoutData = localStorage.getItem("checkout");
@@ -55,7 +57,7 @@ const formattedTotalIncludingTax = computed(() =>
   store.priceFormatter(totalIncludingTax.value)
 );
 
-const formData = ref({
+const formData = reactive({
   emailAddress: "",
   firstName: "",
   lastName: "",
@@ -67,8 +69,7 @@ const formData = ref({
   phone: "",
 });
 
-const formErrors = ref([]);
-const validations = {
+const rules = {
   emailAddress: { required, email },
   firstName: { required },
   lastName: { required },
@@ -77,19 +78,19 @@ const validations = {
   apartment: { required },
   city: { required },
   postalCode: { required },
-  phone: { required },
+  phone: { required, numeric, minLength: minLength(10) },
 };
-const v$ = useVuelidate(validations, formData);
+const v$ = useVuelidate(rules, formData);
 
 const placeOrder = () => {
-  v$.$validate();
-  if (v$.$invalid) {
-    formErrors.value = v$.$error;
+  v$.value.$touch();
+
+  if (v$.value.$invalid) {
     return;
   }
   const orderData = {
     cart: cart.value,
-    customer: formData.value,
+    customer: formData,
     savings: formattedDiscount.value,
     subtotal: formattedTotal.value,
     taxes: formattedTax.value,
@@ -97,8 +98,7 @@ const placeOrder = () => {
   };
 
   store.placeOrder(orderData);
-
-  router.push("/");
+  showModal.value = true;
 };
 </script>
 
@@ -126,7 +126,7 @@ const placeOrder = () => {
                 />
               </div>
               <div class="red" v-if="v$.emailAddress.$error">
-                {{ v$.emailAddress.$message }}
+                {{ v$.emailAddress.$errors[0].$message }}
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.firstName.$error">
-                  {{ v$.firstName.$message }}
+                  {{ v$.firstName.$errors[0].$message }}
                 </div>
               </div>
 
@@ -167,7 +167,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.lastName.$error">
-                  {{ v$.lastName.$message }}
+                  {{ v$.lastName.$errors[0].$message }}
                 </div>
               </div>
 
@@ -184,7 +184,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.company.$error">
-                  {{ v$.company.$message }}
+                  {{ v$.company.$errors[0].$message }}
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.address.$error">
-                  {{ v$.address.$message }}
+                  {{ v$.address.$errors[0].$message }}
                 </div>
               </div>
 
@@ -219,7 +219,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.apartment.$error">
-                  {{ v$.apartment.$message }}
+                  {{ v$.apartment.$errors[0].$message }}
                 </div>
               </div>
 
@@ -237,7 +237,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.city.$error">
-                  {{ v$.city.$message }}
+                  {{ v$.city.$errors[0].$message }}
                 </div>
               </div>
 
@@ -255,7 +255,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.postalCode.$error">
-                  {{ v$.postalCode.$message }}
+                  {{ v$.postalCode.$errors[0].$message }}
                 </div>
               </div>
 
@@ -273,7 +273,7 @@ const placeOrder = () => {
                   />
                 </div>
                 <div class="red" v-if="v$.phone.$error">
-                  {{ v$.phone.$message }}
+                  {{ v$.phone.$errors[0].$message }}
                 </div>
               </div>
             </div>
@@ -288,12 +288,12 @@ const placeOrder = () => {
             <h3 class="sr-only">Items in your cart</h3>
             <ul role="list" class="divide-y divide-gray-200">
               <li v-for="(product, index) in cart" :key="index" class="order-summary">
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 max-[240px]:flex max-[240px]:justify-center">
                   <img :src="product.img" alt="" class="w-20 h-28" />
                 </div>
 
                 <div class="order-flex">
-                  <div class="flex">
+                  <div class="flex max-[430px]:flex-col">
                     <div class="min-w-0 flex-1">
                       <h4 class="text-sm">
                         <a class="order-title">{{ product.name }}</a>
@@ -304,11 +304,8 @@ const placeOrder = () => {
                       </p>
                     </div>
 
-                    <div class="ml-4 flow-root flex-shrink-0">
-                      <button
-                        type="button"
-                        class="-m-2.5 flex items-center justify-center p-2.5 text-gray-400 hover:text-gray-500"
-                      >
+                    <div class="order-edit">
+                      <button type="button" class="order-edit-btn">
                         <span class="sr-only">Edit</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -329,14 +326,14 @@ const placeOrder = () => {
                     </div>
                   </div>
 
-                  <div class="flex flex-1 items-end justify-between pt-2">
+                  <div class="order-save-qty">
                     <p class="mt-1 !text-orange-400 order-number">
                       Save {{ formattedDiscountPerItem(product) }} ({{
                         product.discount
                       }})
                     </p>
 
-                    <div class="ml-4">
+                    <div class="ml-4 max-[430px]:ml-0">
                       <h1 class="order-quantity">Quantity: {{ product.quantity }}</h1>
                     </div>
                   </div>
@@ -363,9 +360,10 @@ const placeOrder = () => {
                 </dd>
               </div>
             </dl>
-            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+            <div class="order-div">
               <button type="submit" class="add-cart">Place order</button>
             </div>
+            <ModalView v-if="showModal" />
           </div>
         </div>
       </form>
