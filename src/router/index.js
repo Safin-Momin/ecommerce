@@ -29,14 +29,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/modal',
-      name: 'ModalView',
-      component: () => import('@/components/ModalView.vue'),
-      meta: {
-        title: 'Shop Stock | Checkout'
-      }
-    },
-    {
       path: "/:catchAll(.*)",
       name: "NotFound",
       component: () => import("@/components/NotFound.vue"),

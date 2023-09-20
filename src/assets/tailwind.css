@@ -6,9 +6,6 @@ body{
     @apply bg-orange-100
 }
 
-#app{
-    @apply w-screen
-}
 .main{
     @apply xl:flex xl:justify-center
 }
@@ -128,7 +125,6 @@ span{
   transition: background 0s;
 }
 
-
 /* Cart Page Styling */
 
 .cart-main{
@@ -207,6 +203,10 @@ svg{
     @apply my-5 max-[500px]:self-center max-[500px]:w-full w-1/2 min-h-fit flex self-end flex-col rounded-md bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all p-2
 }
 
+.footer-text{
+    @apply flex flex-row justify-between items-center
+}
+
 .sub-total{
     @apply font-semibold sm:text-2xl text-blue-950
 }
@@ -221,24 +221,12 @@ svg{
 
 /* Not Found Page */
 
-.not-h1{
-    @apply text-5xl font-semibold my-5 text-blue-950
-}
-
-.not-h3{
-    @apply text-2xl mb-4
-}
-
 .home{
     @apply text-orange-400 text-xl underline
 }
 
 .not-found{
     @apply h-[95vh] flex justify-center items-center flex-col
-}
-
-.footer-text{
-    @apply flex flex-row justify-between items-center
 }
 
 /* Checkout Page Design */
@@ -316,7 +304,7 @@ svg{
 }
 
 .order-total-flex{
-    @apply flex items-center justify-between
+    @apply flex items-center justify-between max-[250px]:flex-col
 }
 
 .order-number{
