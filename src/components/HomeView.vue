@@ -46,3 +46,9 @@ const cartLength = computed(() => store.cartLength);
     </div>
   </div>
 </template>
+
+<style>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>

@@ -45,7 +45,7 @@ body{
 }
 
 .product{
-    @apply h-40 my-5 w-4/5 max-[640px]:block max-[640px]:m-auto sm:w-full rounded-md h-fit bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all px-2 pb-2
+    @apply my-5 w-4/5 max-[640px]:block max-[640px]:m-auto sm:w-full rounded-md h-fit bg-orange-200/25 hover:bg-orange-300/25 hover:transition-all px-2 pb-2
 }
 
 .product-img{
@@ -289,6 +289,10 @@ svg{
 
 .order-summary{
     @apply flex max-[240px]:flex-col max-[240px]:justify-center px-4 py-6 sm:px-6 hover:bg-orange-100 transition-all delay-75
+}
+
+.order-img{
+    @apply w-20 h-28 object-contain hover:scale-125 transition-all duration-200
 }
 
 .order-title{

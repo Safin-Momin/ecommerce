@@ -289,7 +289,7 @@ const placeOrder = () => {
             <ul role="list" class="divide-y divide-gray-200">
               <li v-for="(product, index) in cart" :key="index" class="order-summary">
                 <div class="flex-shrink-0 max-[240px]:flex max-[240px]:justify-center">
-                  <img :src="product.img" alt="" class="w-20 h-28" />
+                  <img :src="product.img" alt="" class="order-img" />
                 </div>
 
                 <div class="order-flex">
