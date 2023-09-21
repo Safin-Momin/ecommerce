@@ -70,7 +70,7 @@ const checkout = () => {
     <div class="cart-box">
       <div class="cart-flex">
         <div class="cart-header">
-          <h1 class="cart-heading">Shopping Cart</h1>
+          <h1 class="cart-heading" @click="router.push('/')">Shopping Cart</h1>
           <span class="remove-items" @click="removeAllItems">Remove All</span>
         </div>
         <div class="flex-inner" v-for="product in productsInCart" :key="product.id">

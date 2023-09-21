@@ -77,7 +77,7 @@ const rules = {
   address: { required },
   apartment: { required },
   city: { required },
-  postalCode: { required },
+  postalCode: { required, numeric },
   phone: { required, numeric, minLength: minLength(10) },
 };
 const v$ = useVuelidate(rules, formData);
@@ -99,6 +99,7 @@ const placeOrder = () => {
 
   store.placeOrder(orderData);
   showModal.value = true;
+  store.cart = [];
 };
 </script>
 
@@ -315,6 +316,7 @@ const placeOrder = () => {
                           stroke="currentColor"
                           class="w-5 h-5"
                           @click="router.push('/cart')"
+                          v-if="!showModal"
                         >
                           <path
                             stroke-linecap="round"
@@ -361,7 +363,9 @@ const placeOrder = () => {
               </div>
             </dl>
             <div class="order-div">
-              <button type="submit" class="add-cart">Place order</button>
+              <button type="submit" class="add-cart" v-if="!showModal">
+                Place order
+              </button>
             </div>
             <ModalView v-if="showModal" />
           </div>

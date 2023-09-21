@@ -184,7 +184,7 @@ span{
 }
 
 .cart-heading{
-    @apply text-2xl sm:text-4xl font-semibold text-blue-950 my-5
+    @apply text-2xl sm:text-4xl cursor-pointer font-semibold text-blue-950 my-5
 }
 
 .remove-items{
@@ -288,7 +288,7 @@ svg{
 }
 
 .order-summary{
-    @apply flex max-[240px]:flex-col max-[240px]:justify-center px-4 py-6 sm:px-6 hover:bg-orange-100 transition-all delay-75
+    @apply flex max-[240px]:flex-col max-[240px]:justify-center px-4 py-6 sm:px-6 hover:bg-gray-50 hover:rounded-t-md transition-all delay-75
 }
 
 .order-img{
@@ -330,7 +330,7 @@ svg{
 /* Modal Text */
 
 .modal-div{
-    @apply flex justify-center flex-col pb-4
+    @apply flex justify-center flex-col pb-4 -mt-6
 }
 
 .modal-text{
