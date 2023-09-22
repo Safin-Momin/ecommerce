@@ -100,6 +100,7 @@ const placeOrder = () => {
   store.placeOrder(orderData);
   showModal.value = true;
   store.cart = [];
+  store.updateCartInLocalStorage();
 };
 </script>
 

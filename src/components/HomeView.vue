@@ -3,7 +3,10 @@ import { computed } from "vue";
 import ProductsView from "@/components/ProductsView.vue";
 import { useStore } from "../stores/store";
 const store = useStore();
-const cartLength = computed(() => store.cartLength);
+const productsInCart = store.cart;
+const totalQuantityInCart = computed(() => {
+  return productsInCart.reduce((total, product) => total + product.quantity, 0);
+});
 </script>
 
 <template>
@@ -17,7 +20,7 @@ const cartLength = computed(() => store.cartLength);
         />
         <div class="cart">
           <RouterLink to="/cart">
-            <div class="number">{{ cartLength }}</div>
+            <div class="number">{{ totalQuantityInCart }}</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

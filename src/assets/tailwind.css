@@ -330,11 +330,11 @@ svg{
 /* Modal Text */
 
 .modal-div{
-    @apply flex justify-center flex-col pb-4 -mt-6
+    @apply flex justify-center flex-col pb-4 -mt-6 px-4
 }
 
 .modal-text{
-    @apply text-green-500 flex justify-center animate-pulse
+    @apply text-green-500 flex justify-center text-center animate-pulse
 }
 
 .modal-btn{
